@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 
-function Counter() {
+function Counter(props) {
+  const amount = props.state.count;
+  const name = props.state.name;
   const [count, setCount] = useState(0);
 
   return (
     <div className="container">
       <h1>Counter</h1>
-      <p className="counter">{count}</p>
+      <h2>{name}</h2>
+      <p className="counter">{amount}</p>
       <div className="buttons">
         <button 
           type="button" 
