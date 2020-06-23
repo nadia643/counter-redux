@@ -1,22 +1,24 @@
 import React from "react";
 import Counter from "./Counter";
-import { createStore, compose } from "redux";
+import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import { composeWithDevTools } from'redux-devtools-extension';
 // reducers
 import countReducer from "./countReducer";
-
-// setup initial state
-const defaultState = {
-  count: 0,
-  name: "nadia",
-};
+import productReducer from "./productReducer";
+import modalReducer from "./modalReducer";
+// get components
+import Modal from './Modal';
 
 // setup store - the 2 arguments are the old state or the state
 // before update, and then is the action (what we want to do)
 const store = createStore(
-  countReducer, 
-  defaultState,
+  combineReducers({
+    countState: countReducer,
+    modalState: modalReducer,
+    productState: productReducer
+
+  }), 
   composeWithDevTools()
   );
 
@@ -31,6 +33,7 @@ const App = () => {
   return (  
   <Provider store={store}>
     <Counter random="random value" />;
+    <Modal />
   </Provider>
   
   )
